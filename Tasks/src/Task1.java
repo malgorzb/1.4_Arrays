@@ -1,35 +1,22 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
-        System.out.print("Enter the size of the array: ");
-        int n = scanner.nextInt();
-        int[] numbers = new int[n];
+        String[] firstNames = {"Alice", "Bob", "Charlie", "Diana", "Eve"};
+        String[] lastNames = {"Smith", "Johnson", "Brown", "Taylor", "Anderson"};
 
-        System.out.println("Enter the integers into the array:");
-        for (int i = 0; i < n; i++) {
-            System.out.print("Enter integer " + (i + 1) + ": ");
-            numbers[i] = scanner.nextInt();
+        System.out.print("How many random names to generate? ");
+        int count = scanner.nextInt();
+
+        System.out.println("\nGenerated names:");
+        for (int i = 0; i < count; i++) {
+            String first = firstNames[random.nextInt(firstNames.length)];
+            String last = lastNames[random.nextInt(lastNames.length)];
+            System.out.println((i + 1) + ". " + first + " " + last);
         }
-
-        int maxSum = Integer.MIN_VALUE;
-        int start = 0, end = 0;
-
-        for (int i = 0; i < n; i++) {
-            int currentSum = 0;
-            for (int j = i; j < n; j++) {
-                currentSum += numbers[j];
-                if (currentSum > maxSum) {
-                    maxSum = currentSum;
-                    start = i;
-                    end = j;
-                }
-            }
-        }
-
-        System.out.println("\nMaximum sum: " + maxSum);
-        System.out.println("Integers: " + (start + 1) + "-" + (end + 1));
     }
 }

@@ -14,27 +14,22 @@ public class Task2 {
             numbers[i] = scanner.nextInt();
         }
 
-        int[] unique = new int[n];
-        int uniqueCount = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int start = 0, end = 0;
 
         for (int i = 0; i < n; i++) {
-            boolean found = false;
-            for (int j = 0; j < uniqueCount; j++) {
-                if (numbers[i] == unique[j]) {
-                    found = true;
-                    break;
+            int currentSum = 0;
+            for (int j = i; j < n; j++) {
+                currentSum += numbers[j];
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                    start = i;
+                    end = j;
                 }
-            }
-            if (!found) {
-                unique[uniqueCount] = numbers[i];
-                uniqueCount++;
             }
         }
 
-        System.out.println("\nThe array without duplicates:");
-        for (int i = 0; i < uniqueCount; i++) {
-            System.out.print(unique[i] + " ");
-        }
-        System.out.println();
+        System.out.println("\nMaximum sum: " + maxSum);
+        System.out.println("Integers: " + (start + 1) + "-" + (end + 1));
     }
 }
